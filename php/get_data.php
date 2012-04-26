@@ -11,7 +11,6 @@ if ($q == "all") {
     foreach ($class_methods as $method_name) {
         $stats[$method_name] = SystemStats::$method_name();
     }
-
 } else if ($q == "cpu") {
     $stats['cpu_load_perc_free'] = SystemStats::cpu_load_perc_free();
     $stats['cpu_load_perc_used'] = SystemStats::cpu_load_perc_used();
