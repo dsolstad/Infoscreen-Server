@@ -17,7 +17,11 @@ class SystemStats {
     public static function distro() {
         $info = shell_exec('cat /etc/*-release');
         preg_match('/DISTRIB_DESCRIPTION="(.*?)"/', $info, $m);
-        return trim($m[1]);
+        if ($m[1]) {
+            return trim($m[1]);
+        } else {
+            return "N/A";
+        }
     }
 
     public static function uptime() {
