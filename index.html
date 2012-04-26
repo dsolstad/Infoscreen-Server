@@ -21,6 +21,9 @@
     .header {
         color:#4bb2c5; font-size:26px; font-weight:bold;
     }
+    .graph {
+        height:200px; width:200px; text-align:center; margin-right:10%;
+    }
     </style>
 
     <script type="text/javascript">
@@ -164,64 +167,50 @@
         <div id="without_graph" style="overflow:hidden;">
             <div style="float:left;">
                 <span class="header">General</span>
-                <div style="height:0px;"></div>
-                <div style="margin-right:10%;">
-                  <div><span class="label">Kernel:</span> <span id="kernel" class="value"></span></div>
-                  <div><span class="label">Distro:</span> <span id="distro" class="value"></span></div>
-                  <div><span class="label">Uptime:</span> <span id="uptime" class="value"></span></div>
-                  <div><span class="label">Processes:</span> <span id="processes" class="value"></span></div>
-                </div>
+                <div><span class="label">Kernel:</span> <span id="kernel" class="value"></span></div>
+                <div><span class="label">Distro:</span> <span id="distro" class="value"></span></div>
+                <div><span class="label">Uptime:</span> <span id="uptime" class="value"></span></div>
+                <div><span class="label">Processes:</span> <span id="processes" class="value"></span></div>
             </div>
-            <div style="float:left;">
+            <div style="float:left; margin-left:7%;">
                 <span class="header">Network</span>
-                <div style="height:0px;float:left;"></div>
-                <div style="margin-right:0%;">
-                    <div><span class="label">Device:</span> <span id="network_device" class="value"></span></div>
-                    <div><span class="label">IPv4 address:</span> <span id="ipv4_addr" class="value"></span></div>
-                    <div><span class="label">Download speed:</span> <span id="dl_speed" class="value"></span></div>
-                    <div><span class="label">Upload speed:</span> <span id="ul_speed" class="value"></span></div>
-                </div>
+                <div><span class="label">Device:</span> <span id="network_device" class="value"></span></div>
+                <div><span class="label">IPv4 address:</span> <span id="ipv4_addr" class="value"></span></div>
+                <div><span class="label">Download speed:</span> <span id="dl_speed" class="value"></span></div>
+                <div><span class="label">Upload speed:</span> <span id="ul_speed" class="value"></span></div>
             </div>
         </div>
         <div id="with_graph" style="margin-top:3%;">
             <div style="float:left;">
                 <span class="header">Processor</span>
-                <div id="cpu" style="height:200px;width:200px;text-align:center;"></div>
-                <div style="margin-right:10%;">
-                    <div><span class="label">Model:</span> <span id="cpu_model" class="value"></span></div>
-                    <div><span class="label">Frequency:</span> <span id="cpu_freq" class="value"></span></div>
-                    <div><span class="label">Cores:</span> <span id="cpu_cores" class="value"></span></div>
-                    <div><span class="label">Temp:</span> <span id="cpu_temp" class="value"></span></div>
-                </div>
+                <div id="cpu" class="graph"></div>
+                <div><span class="label">Model:</span> <span id="cpu_model" class="value"></span></div>
+                <div><span class="label">Frequency:</span> <span id="cpu_freq" class="value"></span></div>
+                <div><span class="label">Cores:</span> <span id="cpu_cores" class="value"></span></div>
+                <div><span class="label">Temp:</span> <span id="cpu_temp" class="value"></span></div>
             </div>
             <div style="float:left;">
                 <span class="header">Memory</span>
-                <div id="ram" style="height:200px;width:200px;text-align:center;"></div>
-                <div style="margin-right:10%;">
-                  <div><span class="label">Total:</span> <span id="ram_total" class="value"></span></div>
-                  <div><span class="label">Used:</span> <span id="ram_used" class="value"></span></div>
-                  <div><span class="label">Free:</span> <span id="ram_free" class="value"></span></div>
-                </div>
+                <div id="ram" class="graph"></div>
+                <div><span class="label">Total:</span> <span id="ram_total" class="value"></span></div>
+                <div><span class="label">Used:</span> <span id="ram_used" class="value"></span></div>
+                <div><span class="label">Free:</span> <span id="ram_free" class="value"></span></div>
             </div>
             <div style="float:left;">
                 <span class="header">Root</span>
-                <div id="fs" style="height:200px;width:200px;text-align:center;"></div>
-                <div style="margin-right:10%;">
-                  <div><span class="label">Total:</span> <span id="fs_root_total" class="value"></span></div>
-                  <div><span class="label">Used:</span> <span id="fs_root_used" class="value"></span></div>
-                  <div><span class="label">Free:</span> <span id="fs_root_free" class="value"></span></div>
-                  <div><span class="label">Type:</span> <span id="fs_root_type" class="value"></span></div>
-                </div>
+                <div id="fs" class="graph"></div>
+                <div><span class="label">Total:</span> <span id="fs_root_total" class="value"></span></div>
+                <div><span class="label">Used:</span> <span id="fs_root_used" class="value"></span></div>
+                <div><span class="label">Free:</span> <span id="fs_root_free" class="value"></span></div>
+                <div><span class="label">Type:</span> <span id="fs_root_type" class="value"></span></div>
             </div>
             <div style="float:left;">
                 <span class="header">Swap</span>
-                <div id="swap" style="height:200px;width:200px;text-align:center;"></div>
-                <div style="margin-right:10%;">
-                    <div><span class="label">Total:</span> <span id="fs_swap_total" class="value"></span></div>
-                    <div><span class="label">Used:</span> <span id="fs_swap_used" class="value"></span></div>
-                    <div><span class="label">Free:</span> <span id="fs_swap_free" class="value"></span></div>
-                    <div><span class="label">Swappiness:</span> <span id="fs_swap_swappiness" class="value"></span></div>
-                </div>
+                <div id="swap" class="graph"></div>
+                <div><span class="label">Total:</span> <span id="fs_swap_total" class="value"></span></div>
+                <div><span class="label">Used:</span> <span id="fs_swap_used" class="value"></span></div>
+                <div><span class="label">Free:</span> <span id="fs_swap_free" class="value"></span></div>
+                <div><span class="label">Swappiness:</span> <span id="fs_swap_swappiness" class="value"></span></div>
             </div>
          </div>
     </div>
