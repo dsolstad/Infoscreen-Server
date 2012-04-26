@@ -2,8 +2,7 @@
 
 ##
 ##    Author: echofish (http://echofish.org)
-##    Licence: MIT (http://en.wikipedia.org/wiki/MIT_licence)
-##    Last updated: 25 Apr 2012
+##    Licence: GPL
 ##
 
 class SystemStats {
