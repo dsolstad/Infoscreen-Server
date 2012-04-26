@@ -72,20 +72,20 @@ class SystemStats {
 
     public static function ram_total() {
         $info = shell_exec("cat /proc/meminfo | grep MemTotal: | awk '{print $2}'");
-        // Returns size in megabytes
-        return round($info / 1024) . " MiB";
+        // Returns size in gigabytes
+        return round($info / pow(1024,2), 2) . " GiB";
     }
 
     public static function ram_free() {
         $info = shell_exec("cat /proc/meminfo | grep MemFree: | awk '{print $2}'");
-        // Returns size in megabytes
-        return round($info / 1024) . " MiB";
+        // Returns size in gigabytes
+        return round($info / pow(1024,2), 2) . " GiB";
     }
 
     public static function ram_used() {
         // Returns size in megabytes
         // Need to remove the prefix before minus
-        return substr(self::ram_total(), 0, -4) - substr(self::ram_free(), 0, -4) . " MiB";
+        return substr(self::ram_total(), 0, -4) - substr(self::ram_free(), 0, -4) . " GiB";
     }
  
     public static function gfx_model() {
