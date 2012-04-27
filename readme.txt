@@ -4,8 +4,8 @@ License: GPL
 
 Requirements:
 
-lm-sensors sensors-applet
+    lm-sensor
+    
+    On debian based systems:
 
-On debian based systems:
-
-sudo apt-get install lm-sensors sensors-applet
+    sudo apt-get install lm-sensors
