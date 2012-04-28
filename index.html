@@ -13,13 +13,13 @@
         background-color: #123456;
     }
     .label {
-        color:#eaa228; font-size:18px;
+        color:#eaa228; font-size:15px; font-weight:bold;
     }
     .value {
-        color:#4bb2c5; font-size:18px;
+        color:#4bb2c5; font-size:15px; font-weight:bold;
     }
     .header {
-        color:#4bb2c5; font-size:26px; font-weight:bold;
+        color:#4bb2c5; font-size:22px; font-weight:bold;
     }
     .graph {
         height:200px; width:200px; text-align:center; margin-right:10%;
@@ -31,7 +31,11 @@
     function get_all_json_data() {
         $.getJSON('./php/get_data.php?q=all', function(data) {
             // Give each html element a value
-            $.each(data, function(key, value){
+            $.each(data, function(key, value) {
+                value = value.toString();
+                while (value.indexOf("\n") > -1) {
+                    value = value.replace("\n", "<br />");
+                }
                 $('#'+key).html(value);
             });
             create_cpu_graph(data.cpu_load_perc_free, data.cpu_load_perc_used);
@@ -45,6 +49,8 @@
     // Get cpu data as json every 10 sec
     function get_cpu_json_data() {
         $.getJSON('./php/get_data.php?q=cpu', function(data) {
+            $('#top_cpu').html(data.top_cpu);
+            $('#top_ram').html(data.top_ram);
             create_cpu_graph(data.cpu_load_perc_free, data.cpu_load_perc_used);
             setTimeout(get_cpu_json_data, 10 * 1000);
         });
@@ -173,19 +179,25 @@
                 <div><span class="label">Kernel:</span> <span id="kernel" class="value"></span></div>
                 <div><span class="label">Distro:</span> <span id="distro" class="value"></span></div>
                 <div><span class="label">Uptime:</span> <span id="uptime" class="value"></span></div>
-                <div><span class="label">Processes:</span> <span id="processes" class="value"></span></div>
+                <div><span class="label">Processes:</span> <span id="all_processes" class="value"></span></div>
+                <div><span class="label">Running:</span> <span id="running_processes" class="value"></span></div>
             </div>
-            <div style="float:left; margin-left:7%;">
+            <div style="float:left; margin-left:5%;">
                 <span class="header">Network</span>
                 <div><span class="label">Device:</span> <span id="network_device" class="value"></span></div>
+                <div><span class="label">MAC address:</span> <span id="mac_addr" class="value"></span></div>
                 <div><span class="label">IPv4 address:</span> <span id="ipv4_addr" class="value"></span></div>
                 <div><span class="label">Download:</span> <span id="dl_speed" class="value"></span> <span class="value"> -</span><span class="label"> Tot: </span><span id="total_downloaded" class="value"></span></div>
                 <div><span class="label">Upload:</span> <span id="ul_speed" class="value"></span> <span class="value"> -</span><span class="label"> Tot: </span><span id="total_uploaded" class="value"></span></div>
+                <div><span class="label">Open ports - known:</span> <span id="open_ports_known" class="value"></span></div>
+                <div><span class="label">Open ports - unknown:</span> <span id="open_ports_unknown" class="value"></span></div>
             </div>
-            <div style="float:left; margin-left:7%;">
-                <span class="header">Open Ports</span>
-                <div><span class="label">Known:</span> <span id="open_ports_known" class="value"></span></div>
-                <div><span class="label">Unknown:</span> <span id="open_ports_unknown" class="value"></span></div>
+            <div style="float:left; margin-left:5%;">
+                <span class="header">Top processes</span>
+                <div><span class="label">By processor</span></div>
+                <div><span id="top_cpu" class="value"></span></div>
+                <div><span class="label">By memory</span></div>
+                <div><span id="top_ram" class="value"></span></div>
             </div>
         </div>
         <div id="with_graph" style="margin-top:3%;">

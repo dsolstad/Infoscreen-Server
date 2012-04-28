@@ -26,17 +26,59 @@ class SystemStats {
             return "N/A";
         }
     }
+    
+    public static function top_ram() {
+        $info = shell_exec("ps aux | sort -b -r -g -k 4 | head -3 | awk '{print $4\"%\",$11}'");
+        $new_info = '';
+        foreach (explode("\n", $info) as $line) {
+            $words = explode(" ", $line);
+            $new_info .= array_shift($words);
+            if (strpos($words[0], '/') !== false) {
+                $folders = explode("/", $words[0]);
+                $new_info .= ' ' . array_pop($folders) . "\n";
+            } else {
+                $new_info .= ' ' . $words[0] . "\n";
+            }
+        }
+        return trim($new_info);
+    }
+    
+    public static function top_cpu() {
+        $info = shell_exec("ps aux | sort -b -r -g -k 3 | head -3 | awk '{print $3\"%\",$11}'");
+        $new_info = '';
+        foreach (explode("\n", $info) as $line) {
+            $words = explode(" ", $line);
+            $new_info .= array_shift($words);
+            if (strpos($words[0], '/') !== false) {
+                $folders = explode("/", $words[0]);
+                $new_info .= ' ' . array_pop($folders) . "\n";
+            } else {
+                $new_info .= ' ' . $words[0] . "\n";
+            }
+        }
+        return trim($new_info);
+    }
 
+    /*
+    public static function top_both() {
+        return shell_exec("ps aux | sort -b -r -k 3 -k 4 | head -6 | tail -5 | awk '{print $3,$4,$11}'");
+    }
+    */
+    
     public static function uptime() {
         $info = shell_exec('uptime');
         preg_match('/(\d+ days, .*?), /', $info, $m);
         return trim($m[1]);
     }
 
-    public static function processes() {
+    public static function all_processes() {
         return trim(shell_exec('ps auxh | wc -l'));
     }
  
+    public static function running_processes() {
+        return trim(shell_exec('ps -e | grep -v ? | tail -n +2 | wc -l'));
+    }
+
     public static function cpu_freq() {
         $info = shell_exec("cat /proc/cpuinfo | grep MHz | awk '{print $4}' | head -1");
         // Returns frequency in gigahertz
@@ -108,6 +150,11 @@ class SystemStats {
     
     public static function network_device() {
         return self::$network_dev;
+    }
+    
+    public static function mac_addr() {
+        $dev = escapeshellarg(self::$network_dev);
+        return shell_exec("/sbin/ifconfig ".$dev." | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
     }
     
     public static function ipv4_addr() {
