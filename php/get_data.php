@@ -16,6 +16,8 @@ if ($_GET['q'] == 'all') {
 } else if ($_GET['q'] == 'network') {
     $stats['dl_speed'] = SystemStats::dl_speed();
     $stats['ul_speed'] = SystemStats::ul_speed();
+    $stats['total_downloaded'] = SystemStats::total_downloaded();
+    $stats['total_uploaded'] = SystemStats::total_uploaded();
 }
 
 print json_encode($stats);

@@ -144,7 +144,7 @@ class SystemStats {
         if (preg_match('/ESSID:"(.*?)"\n/', $info, $m)) {
             return trim($m[1]);
         } else {
-            return 'Not connected to any wlan.';
+            return 'N/A';
         }
     }
     
@@ -177,7 +177,11 @@ class SystemStats {
                 $output[] = $pop;
             }
         }
-        return join(", ", array_unique($output));
+        if (!empty($output)) {
+            return join(", ", array_unique($output));
+        } else {
+            return 'N/A';
+        }
     }
 
     public static function open_ports_unknown() {
@@ -190,7 +194,11 @@ class SystemStats {
                 $output[] = $pop;
             }
         }
-        return join(", ", array_unique($output));
+        if (!empty($output)) {
+            return join(", ", array_unique($output));
+        } else {
+            return 'N/A';
+        }
     }
 
     public static function dl_speed() {
