@@ -55,6 +55,8 @@
         $.getJSON('./php/get_data.php?q=network', function(data) {
             $('#dl_speed').html(data.dl_speed);
             $('#ul_speed').html(data.ul_speed);
+            $('#total_downloaded').html(data.total_downloaded);
+            $('#total_uploaded').html(data.ul_total_uploaded);
             setTimeout(get_network_json_data, 10 * 1000);
         });
     }
@@ -167,6 +169,7 @@
         <div id="without_graph" style="overflow:hidden;">
             <div style="float:left;">
                 <span class="header">General</span>
+                <div><span class="label">Hostname:</span> <span id="hostname" class="value"></span></div>
                 <div><span class="label">Kernel:</span> <span id="kernel" class="value"></span></div>
                 <div><span class="label">Distro:</span> <span id="distro" class="value"></span></div>
                 <div><span class="label">Uptime:</span> <span id="uptime" class="value"></span></div>
@@ -176,8 +179,8 @@
                 <span class="header">Network</span>
                 <div><span class="label">Device:</span> <span id="network_device" class="value"></span></div>
                 <div><span class="label">IPv4 address:</span> <span id="ipv4_addr" class="value"></span></div>
-                <div><span class="label">Download speed:</span> <span id="dl_speed" class="value"></span></div>
-                <div><span class="label">Upload speed:</span> <span id="ul_speed" class="value"></span></div>
+                <div><span class="label">Download:</span> <span id="dl_speed" class="value"></span> <span class="value"> -</span><span class="label"> Tot: </span><span id="total_downloaded" class="value"></span></div>
+                <div><span class="label">Upload:</span> <span id="ul_speed" class="value"></span> <span class="value"> -</span><span class="label"> Tot: </span><span id="total_uploaded" class="value"></span></div>
             </div>
             <div style="float:left; margin-left:7%;">
                 <span class="header">Open Ports</span>

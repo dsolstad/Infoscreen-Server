@@ -13,6 +13,10 @@ class SystemStats {
         return trim(shell_exec('uname -r'));
     }
 
+    public static function hostname() {
+        return trim(shell_exec("hostname"));
+    }
+
     public static function distro() {
         $info = shell_exec('cat /etc/*-release');
         preg_match('/DISTRIB_DESCRIPTION="(.*?)"/', $info, $m);
@@ -165,6 +169,26 @@ class SystemStats {
             return round($speed / pow(1024, 2)) . " MiB/s";
         } else {
             return round($speed / 1024) . " KiB/s";
+        }
+    }
+    
+    public static function total_downloaded() {
+        $dev = escapeshellarg(self::$network_dev);
+        $info = shell_exec("cat /proc/net/dev | grep ".$dev." | awk '{print $2}'");
+        if (($info / pow(1024, 2)) > pow(1024, 2)) {
+            return round($info / pow(1024, 3)) . " GiB";
+        } else {
+            return round($info / pow(1024, 2)) . " MiB";
+        }
+    }
+    
+    public static function total_uploaded() {
+        $dev = escapeshellarg(self::$network_dev);
+        $info = shell_exec("cat /proc/net/dev | grep ".$dev." | awk '{print $10}'");
+        if (($info / pow(1024, 2)) > pow(1024, 2)) {
+            return round($info / pow(1024, 3)) . " GiB";
+        } else {
+            return round($info / pow(1024, 2)) . " MiB";
         }
     }
     
