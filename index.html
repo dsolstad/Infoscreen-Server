@@ -179,6 +179,11 @@
                 <div><span class="label">Download speed:</span> <span id="dl_speed" class="value"></span></div>
                 <div><span class="label">Upload speed:</span> <span id="ul_speed" class="value"></span></div>
             </div>
+            <div style="float:left; margin-left:7%;">
+                <span class="header">Open Ports</span>
+                <div><span class="label">Known:</span> <span id="open_ports_known" class="value"></span></div>
+                <div><span class="label">Unknown:</span> <span id="open_ports_unknown" class="value"></span></div>
+            </div>
         </div>
         <div id="with_graph" style="margin-top:3%;">
             <div style="float:left;">
@@ -197,20 +202,20 @@
                 <div><span class="label">Free:</span> <span id="ram_free" class="value"></span></div>
             </div>
             <div style="float:left;">
-                <span class="header">Root</span>
-                <div id="fs" class="graph"></div>
-                <div><span class="label">Total:</span> <span id="fs_root_total" class="value"></span></div>
-                <div><span class="label">Used:</span> <span id="fs_root_used" class="value"></span></div>
-                <div><span class="label">Free:</span> <span id="fs_root_free" class="value"></span></div>
-                <div><span class="label">Type:</span> <span id="fs_root_type" class="value"></span></div>
-            </div>
-            <div style="float:left;">
                 <span class="header">Swap</span>
                 <div id="swap" class="graph"></div>
                 <div><span class="label">Total:</span> <span id="fs_swap_total" class="value"></span></div>
                 <div><span class="label">Used:</span> <span id="fs_swap_used" class="value"></span></div>
                 <div><span class="label">Free:</span> <span id="fs_swap_free" class="value"></span></div>
                 <div><span class="label">Swappiness:</span> <span id="fs_swap_swappiness" class="value"></span></div>
+            </div>
+            <div style="float:left;">
+                <span class="header">Root</span>
+                <div id="fs" class="graph"></div>
+                <div><span class="label">Total:</span> <span id="fs_root_total" class="value"></span></div>
+                <div><span class="label">Used:</span> <span id="fs_root_used" class="value"></span></div>
+                <div><span class="label">Free:</span> <span id="fs_root_free" class="value"></span></div>
+                <div><span class="label">Type:</span> <span id="fs_root_type" class="value"></span></div>
             </div>
          </div>
     </div>

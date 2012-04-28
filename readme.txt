@@ -4,8 +4,8 @@ License: GPL
 
 Requirements:
 
-    lm-sensor
+    lm-sensor, netstat
     
     On debian based systems:
 
-    sudo apt-get install lm-sensors
+    sudo apt-get install lm-sensors netstat

@@ -116,6 +116,32 @@ class SystemStats {
         return trim(shell_exec('ifconfig '.$dev.' | grep inet6 | awk \'{print $3}\' | head -1'));
     }
     
+    public static function open_ports_known() {
+        $info = trim(shell_exec("/bin/netstat -t -l | grep tcp | awk '{print $4}'"));
+        $info = str_replace("\r", "", $info);
+        $output = array();
+        foreach (explode("\n", $info) as $line) {
+            $pop = trim(array_pop(explode(':', $line)));
+            if (!is_numeric($pop)) {
+                $output[] = $pop;
+            }
+        }
+        return join(", ", array_unique($output));
+    }
+
+    public static function open_ports_unknown() {
+        $info = trim(shell_exec("/bin/netstat -t -l | grep tcp | awk '{print $4}'"));
+        $info = str_replace("\r", "", $info);
+        $output = array();
+        foreach (explode("\n", $info) as $line) {
+            $pop = trim(array_pop(explode(':', $line)));
+            if (is_numeric($pop)) {
+                $output[] = $pop;
+            }
+        }
+        return join(", ", array_unique($output));
+    }
+
     public static function dl_speed() {
         $dev = escapeshellarg(self::$network_dev);
         $first = shell_exec("cat /proc/net/dev | grep ".$dev." | awk '{print $2}'");
