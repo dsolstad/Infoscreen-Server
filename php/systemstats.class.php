@@ -168,7 +168,7 @@ class SystemStats {
     }
     
     public static function open_ports_known() {
-        $info = trim(shell_exec("/bin/netstat -t -l | grep tcp | awk '{print $4}'"));
+        $info = trim(shell_exec("/bin/netstat -t -l | grep tcp | grep -v -i localhost | awk '{print $4}'"));
         $info = str_replace("\r", "", $info);
         $output = array();
         foreach (explode("\n", $info) as $line) {
@@ -185,7 +185,7 @@ class SystemStats {
     }
 
     public static function open_ports_unknown() {
-        $info = trim(shell_exec("/bin/netstat -t -l | grep tcp | awk '{print $4}'"));
+        $info = trim(shell_exec("/bin/netstat -t -l | grep tcp | grep -v -i localhost | awk '{print $4}'"));
         $info = str_replace("\r", "", $info);
         $output = array();
         foreach (explode("\n", $info) as $line) {
