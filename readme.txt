@@ -1,4 +1,4 @@
-Author: echofish (echofish.org)
+Author: Daniel Solstad (dsolstad.com)
 Last updated: 26 Apr 2012
 License: GPL
 
