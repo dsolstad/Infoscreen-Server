@@ -1,7 +1,7 @@
 <?php
 
 ##
-##    Author: echofish (http://echofish.org)
+##    Author: Daniel Solstad (http://dsolstad.com)
 ##    Licence: GPL
 ##
 
