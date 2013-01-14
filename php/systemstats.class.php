@@ -64,10 +64,9 @@ class SystemStats {
         return shell_exec("ps aux | sort -b -r -k 3 -k 4 | head -6 | tail -5 | awk '{print $3,$4,$11}'");
     }
     */
-    
     public static function uptime() {
         $info = shell_exec('uptime');
-        preg_match('/(\d+ days, .*?), /', $info, $m);
+        preg_match('/(\d{1,2}:\d{1,2}), /', $info, $m);
         return trim($m[1]);
     }
 
