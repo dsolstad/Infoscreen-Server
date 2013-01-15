@@ -96,13 +96,19 @@ class SystemStats {
     }
 
     public static function cpu_temp() {
+        // Get temp from ´sensors´
         $info = shell_exec('sensors');
         preg_match('/:\s+([+|-].*?)\s*?\(/', $info, $m);
-        // Returns temp in celcius
-        if ($m[1]) {
-            return trim($m[1]);
-        } else {
+        $info = $m[1];
+        if (!$info) {
+            // Get temp from thermal
+            $info = shell_exec('cat /sys/class/thermal/thermal_zone0/temp');
+            $info = $info / 1000;
+        }
+        if (!$info) {
             return "N/A";
+        } else {
+            return trim($info);
         }
     }
     

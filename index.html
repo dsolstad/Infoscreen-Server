@@ -27,6 +27,12 @@
     </style>
 
     <script type="text/javascript">
+    function clearGraphs() {
+        $("div .graph").each(function(){
+            $(this).html('');
+        });
+    }
+    
     // Get all data as json every 5 minutes
     function get_all_json_data() {
         $.getJSON('./php/get_data.php?q=all', function(data) {
@@ -38,6 +44,9 @@
                 }
                 $('#'+key).html(value);
             });
+            // Clears the graphs, so that they dont paint over each other.
+            clearGraphs();
+            // Paints the graphs
             create_cpu_graph(data.cpu_load_perc_free, data.cpu_load_perc_used);
             create_ram_graph(Number(data.ram_free.match(/\d+\.?\d*/)), Number(data.ram_used.match(/\d+\.?\d*/)));
             create_root_graph(Number(data.fs_root_free.match(/\d+\.?\d*/)), Number(data.fs_root_used.match(/\d+\.?\d*/)));
