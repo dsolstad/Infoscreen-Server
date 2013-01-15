@@ -112,6 +112,9 @@ class SystemStats {
         }
     }
     
+    
+    // Alternative: top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%\id.*/\1/" | awk '{print 100 - $1"%"}'
+    
     public static function cpu_load_perc_free() {
         return (int) trim(shell_exec("vmstat | tail -1 | awk '{print $15}'"));
     }
